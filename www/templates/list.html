@@ -1,0 +1,18 @@
+<ion-view view-title="Affirmations">
+  <ion-content ng-controller="ListCtrl">
+    <div class="padding">
+      <a href="#/add" class="button button-block button-calm">New Affirmation</a>
+    </div>
+    <ion-list>
+      <ion-item class="item-remove-animate"
+       href="#/edit/{{affirmation.id}}" ng-repeat="affirmation in affirmations" class="item-button-right">
+        {{affirmation.text}}
+<!--         <button class="button button-clear">
+          <i class="icon ion-edit"></i>
+        </button> -->
+        <ion-option-button class="button-assertive"
+          ng-click="remove(affirmation.id)">Delete</ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
