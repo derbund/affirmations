@@ -1,11 +1,20 @@
 <ion-view view-title="Edit Affirmation">
-    <ion-content>
+    <ion-content ng-controller="EditCtrl">
         <div class="list card">
             <div class="item item-input">
                 <input type="text" placeholder="What do you want to affirm?"
                     ng-model="affirmation.text">
             </div>
+            <div class="item item-input">
+                <label>Schedule notification:</label>
+                <ionic-timepicker input-obj="timePickerObject" etime="timePickerObject.inputEpochTime">
+                  <button class="button button-block button-positive overflowShow">
+                    {{affirmation.time|date:'shortTime':'+0000'}}
+                  </button>
+                </ionic-timepicker>
+            </div>
         </div>
+
         <div class="padding">
             <button class="button button-block button-positive"
                 ng-click="save()">Save</button>

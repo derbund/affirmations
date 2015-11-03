@@ -35,6 +35,9 @@ angular.module('affirm.store', [])
               return;
             }
           }
+          // else create it
+          affirmations.push(affirmation);
+          persist();
         },
 
         remove: function(affirmationId) {
