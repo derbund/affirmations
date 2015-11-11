@@ -55,7 +55,7 @@ app.controller('EditCtrl', function($scope, $state, Store, $ionicPlatform, $cord
 
   $scope.timePickerObject = {
     inputEpochTime: $scope.affirmation.time / 1000,
-    step: 30,  //Optional
+    step: 1,  //Optional
     format: 12,  //Optional
     titleLabel: '12-hour Format',  //Optional
     setLabel: 'Set',  //Optional
@@ -70,18 +70,19 @@ app.controller('EditCtrl', function($scope, $state, Store, $ionicPlatform, $cord
   };
 
   $scope.save = function() {
-    console.log($scope.affirmation);
     Store.update($scope.affirmation);
 
     var platform = ionic.Platform.platform();
 
     if (platform != "macintel") {
       $ionicPlatform.ready(function () {
+        var d = new Date();
+        d.setHours(0,0,0,0);
         $cordovaLocalNotification.schedule({
             id: $scope.affirmation.id,
             title: 'Daily Affirmation',
             text: $scope.affirmation.text,
-            firstAt: $scope.affirmation.time,
+            firstAt: d + $scope.affirmation.time,
             every: 'day'
             // data: {
             //   // customProperty: 'custom value'
